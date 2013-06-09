@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmlns:uml="http://schema.omg.org/spec/UML/2.2"
+	xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:version="2.1"
+	xmi:id="_YpL4EdEaEeKmOatZJT2A1A" name="Patterns">
+	<eAnnotations xmi:id="_YpNGMNEaEeKmOatZJT2A1A" source="Objing">
+		<contents xmi:type="uml:Property" xmi:id="_YpNGMdEaEeKmOatZJT2A1A"
+			name="exporterVersion">
+			<defaultValue xmi:type="uml:LiteralString" xmi:id="_YpNGMtEaEeKmOatZJT2A1A"
+				value="2.2" />
+		</contents>
+	</eAnnotations>
+	<ownedComment xmi:type="uml:Comment" xmi:id="_YpNGM9EaEeKmOatZJT2A1A">
+		<body />
+	</ownedComment>
+	<packagedElement xmi:type="uml:Activity" xmi:id="_YpNGNNEaEeKmOatZJT2A1A"
+		name="Sequence">
+		<nestedClassifier xmi:type="uml:Collaboration"
+			xmi:id="_YpNGNdEaEeKmOatZJT2A1A" name="locals" />
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNGNtEaEeKmOatZJT2A1A"
+			name="a" outgoing="_YpNGOtEaEeKmOatZJT2A1A" incoming="_YpNtQtEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNGN9EaEeKmOatZJT2A1A"
+			name="b" outgoing="_YpNtQNEaEeKmOatZJT2A1A" incoming="_YpNGOtEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:InitialNode" xmi:id="_YpNGONEaEeKmOatZJT2A1A"
+			name="Initial Node" outgoing="_YpNtQtEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:ActivityFinalNode" xmi:id="_YpNGOdEaEeKmOatZJT2A1A"
+			name="Activity Final Node" incoming="_YpNtQNEaEeKmOatZJT2A1A" />
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNGOtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNGNtEaEeKmOatZJT2A1A" target="_YpNGN9EaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNGO9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtQNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNGN9EaEeKmOatZJT2A1A" target="_YpNGOdEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtQdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtQtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNGONEaEeKmOatZJT2A1A" target="_YpNGNtEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtQ9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+	</packagedElement>
+	<packagedElement xmi:type="uml:Activity" xmi:id="_YpNtRNEaEeKmOatZJT2A1A"
+		name="Concurrency">
+		<nestedClassifier xmi:type="uml:Collaboration"
+			xmi:id="_YpNtRdEaEeKmOatZJT2A1A" name="locals" />
+		<node xmi:type="uml:InitialNode" xmi:id="_YpNtRtEaEeKmOatZJT2A1A"
+			name="Initial Node" outgoing="_YpNtTtEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNtR9EaEeKmOatZJT2A1A"
+			name="a" outgoing="_YpNtUNEaEeKmOatZJT2A1A" incoming="_YpNtTtEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNtSNEaEeKmOatZJT2A1A"
+			name="b" outgoing="_YpNtUtEaEeKmOatZJT2A1A" incoming="_YpNtVtEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNtSdEaEeKmOatZJT2A1A"
+			name="c" outgoing="_YpNtVNEaEeKmOatZJT2A1A" incoming="_YpNtWNEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:ActivityFinalNode" xmi:id="_YpNtStEaEeKmOatZJT2A1A"
+			name="Activity Final Node" incoming="_YpNtWtEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:ForkNode" xmi:id="_YpNtS9EaEeKmOatZJT2A1A"
+			name="Fork/Join" outgoing="_YpNtVtEaEeKmOatZJT2A1A _YpNtWNEaEeKmOatZJT2A1A"
+			incoming="_YpNtUNEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:JoinNode" xmi:id="_YpNtTNEaEeKmOatZJT2A1A"
+			name="Fork/Join1" outgoing="_YpNtWtEaEeKmOatZJT2A1A"
+			incoming="_YpNtUtEaEeKmOatZJT2A1A _YpNtVNEaEeKmOatZJT2A1A">
+			<joinSpec xmi:type="uml:LiteralString" xmi:id="_YpNtTdEaEeKmOatZJT2A1A"
+				value="and" />
+		</node>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtTtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtRtEaEeKmOatZJT2A1A" target="_YpNtR9EaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtT9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtUNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtR9EaEeKmOatZJT2A1A" target="_YpNtS9EaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtUdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtUtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtSNEaEeKmOatZJT2A1A" target="_YpNtTNEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtU9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtVNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtSdEaEeKmOatZJT2A1A" target="_YpNtTNEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtVdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtVtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtS9EaEeKmOatZJT2A1A" target="_YpNtSNEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtV9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtWNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtS9EaEeKmOatZJT2A1A" target="_YpNtSdEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtWdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtWtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtTNEaEeKmOatZJT2A1A" target="_YpNtStEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtW9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+	</packagedElement>
+	<packagedElement xmi:type="uml:Activity" xmi:id="_YpNtXNEaEeKmOatZJT2A1A"
+		name="Branching">
+		<nestedClassifier xmi:type="uml:Collaboration"
+			xmi:id="_YpNtXdEaEeKmOatZJT2A1A" name="locals" />
+		<node xmi:type="uml:InitialNode" xmi:id="_YpNtXtEaEeKmOatZJT2A1A"
+			name="Initial Node" outgoing="_YpNtZdEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:DecisionNode" xmi:id="_YpNtX9EaEeKmOatZJT2A1A"
+			name="Decision-Merge" outgoing="_YpNtZ9EaEeKmOatZJT2A1A _YpOUUdEaEeKmOatZJT2A1A"
+			incoming="_YpOUVNEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNtYNEaEeKmOatZJT2A1A"
+			name="a" outgoing="_YpOUVNEaEeKmOatZJT2A1A" incoming="_YpNtZdEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNtYdEaEeKmOatZJT2A1A"
+			name="b" outgoing="_YpOUVtEaEeKmOatZJT2A1A" incoming="_YpNtZ9EaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpNtYtEaEeKmOatZJT2A1A"
+			name="c" outgoing="_YpOUWNEaEeKmOatZJT2A1A" incoming="_YpOUUdEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:MergeNode" xmi:id="_YpNtY9EaEeKmOatZJT2A1A"
+			name="Decision-Merge1" outgoing="_YpOUWtEaEeKmOatZJT2A1A"
+			incoming="_YpOUVtEaEeKmOatZJT2A1A _YpOUWNEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:ActivityFinalNode" xmi:id="_YpNtZNEaEeKmOatZJT2A1A"
+			name="Activity Final Node" incoming="_YpOUWtEaEeKmOatZJT2A1A" />
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtZdEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtXtEaEeKmOatZJT2A1A" target="_YpNtYNEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpNtZtEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpNtZ9EaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtX9EaEeKmOatZJT2A1A" target="_YpNtYdEaEeKmOatZJT2A1A">
+			<guard xmi:type="uml:OpaqueExpression" xmi:id="_YpNtaNEaEeKmOatZJT2A1A">
+				<body>warunek</body>
+			</guard>
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpOUUNEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpOUUdEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtX9EaEeKmOatZJT2A1A" target="_YpNtYtEaEeKmOatZJT2A1A">
+			<guard xmi:type="uml:OpaqueExpression" xmi:id="_YpOUUtEaEeKmOatZJT2A1A">
+				<body>NOT warunek</body>
+			</guard>
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpOUU9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpOUVNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtYNEaEeKmOatZJT2A1A" target="_YpNtX9EaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpOUVdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpOUVtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtYdEaEeKmOatZJT2A1A" target="_YpNtY9EaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpOUV9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpOUWNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtYtEaEeKmOatZJT2A1A" target="_YpNtY9EaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpOUWdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpOUWtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpNtY9EaEeKmOatZJT2A1A" target="_YpNtZNEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpOUW9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+	</packagedElement>
+	<packagedElement xmi:type="uml:Activity" xmi:id="_YpOUXNEaEeKmOatZJT2A1A"
+		name="LoopWhile">
+		<nestedClassifier xmi:type="uml:Collaboration"
+			xmi:id="_YpOUXdEaEeKmOatZJT2A1A" name="locals" />
+		<node xmi:type="uml:InitialNode" xmi:id="_YpOUXtEaEeKmOatZJT2A1A"
+			name="Initial Node" outgoing="_YpVCBNEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:ActivityFinalNode" xmi:id="_YpOUX9EaEeKmOatZJT2A1A"
+			name="Activity Final Node" incoming="_YpVCDNEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpVCANEaEeKmOatZJT2A1A"
+			name="a" outgoing="_YpVCBtEaEeKmOatZJT2A1A" incoming="_YpVCBNEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<node xmi:type="uml:MergeNode" xmi:id="_YpVCAdEaEeKmOatZJT2A1A"
+			outgoing="_YpVCCNEaEeKmOatZJT2A1A" incoming="_YpVCBtEaEeKmOatZJT2A1A _YpVCD9EaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:DecisionNode" xmi:id="_YpVCAtEaEeKmOatZJT2A1A"
+			outgoing="_YpVCCdEaEeKmOatZJT2A1A _YpVCDNEaEeKmOatZJT2A1A" incoming="_YpVCCNEaEeKmOatZJT2A1A" />
+		<node xmi:type="uml:OpaqueAction" xmi:id="_YpVCA9EaEeKmOatZJT2A1A"
+			name="c" outgoing="_YpVCD9EaEeKmOatZJT2A1A" incoming="_YpVCCdEaEeKmOatZJT2A1A">
+			<body />
+		</node>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpVCBNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpOUXtEaEeKmOatZJT2A1A" target="_YpVCANEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpVCBdEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpVCBtEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpVCANEaEeKmOatZJT2A1A" target="_YpVCAdEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpVCB9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpVCCNEaEeKmOatZJT2A1A"
+			source="_YpVCAdEaEeKmOatZJT2A1A" target="_YpVCAtEaEeKmOatZJT2A1A" />
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpVCCdEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpVCAtEaEeKmOatZJT2A1A" target="_YpVCA9EaEeKmOatZJT2A1A">
+			<guard xmi:type="uml:OpaqueExpression" xmi:id="_YpVCCtEaEeKmOatZJT2A1A">
+				<body>b</body>
+			</guard>
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpVCC9EaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpVCDNEaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpVCAtEaEeKmOatZJT2A1A" target="_YpOUX9EaEeKmOatZJT2A1A">
+			<guard xmi:type="uml:OpaqueExpression" xmi:id="_YpVCDdEaEeKmOatZJT2A1A">
+				<body>NOT b</body>
+			</guard>
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpVCDtEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+		<edge xmi:type="uml:ControlFlow" xmi:id="_YpVCD9EaEeKmOatZJT2A1A"
+			name="ControlFlow" source="_YpVCA9EaEeKmOatZJT2A1A" target="_YpVCAdEaEeKmOatZJT2A1A">
+			<weight xmi:type="uml:LiteralInteger" xmi:id="_YpVCENEaEeKmOatZJT2A1A"
+				value="1" />
+		</edge>
+	</packagedElement>
+</uml:Model>
