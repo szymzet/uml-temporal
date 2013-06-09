@@ -1,6 +1,8 @@
 package umltemporal.test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.List;
@@ -8,7 +10,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import umltemporal.NodeType;
 import umltemporal.UmlActivityDiagram;
+import umltemporal.UmlEdge;
+import umltemporal.UmlNode;
 import umltemporal.XmiFileReader;
 
 public class TestXmiFileReader {
@@ -56,4 +61,86 @@ public class TestXmiFileReader {
 		}
 	}
 
+	@Test
+	public void testParse_correctIdsInEdges() throws Exception {
+		final String[][] IDS = {
+				{ "_YpNGOtEaEeKmOatZJT2A1A", "_YpNGNtEaEeKmOatZJT2A1A",
+						"_YpNGN9EaEeKmOatZJT2A1A" },
+				{ "_YpNtQNEaEeKmOatZJT2A1A", "_YpNGN9EaEeKmOatZJT2A1A",
+						"_YpNGOdEaEeKmOatZJT2A1A" },
+				{ "_YpNtQtEaEeKmOatZJT2A1A", "_YpNGONEaEeKmOatZJT2A1A",
+						"_YpNGNtEaEeKmOatZJT2A1A" } };
+
+		patternsRdr.parse();
+		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
+		List<UmlEdge> edges = diags.get(0).getEdges();
+		for (int i = 0; i < edges.size(); ++i) {
+			assertEquals(IDS[i][0], edges.get(i).getID());
+			assertEquals(IDS[i][1], edges.get(i).getSourceID());
+			assertEquals(IDS[i][2], edges.get(i).getTargetID());
+		}
+	}
+
+	@Test
+	public void testParse_correctIdsInNodes() throws Exception {
+		final UmlNode[] NODES = {
+				new UmlNode("_YpOUXtEaEeKmOatZJT2A1A", NodeType.INITIAL_NODE),
+				new UmlNode("_YpOUX9EaEeKmOatZJT2A1A",
+						NodeType.ACTIVITY_FINAL_NODE),
+				new UmlNode("_YpVCANEaEeKmOatZJT2A1A", NodeType.OPAQUE_ACTION),
+				new UmlNode("_YpVCAdEaEeKmOatZJT2A1A", NodeType.MERGE_NODE),
+				new UmlNode("_YpVCAtEaEeKmOatZJT2A1A", NodeType.DECISION_NODE),
+				new UmlNode("_YpVCA9EaEeKmOatZJT2A1A", NodeType.OPAQUE_ACTION) };
+
+		patternsRdr.parse();
+		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
+		List<UmlNode> nodes = diags.get(3).getNodes();
+		for (int i = 0; i < nodes.size(); ++i) {
+			assertEquals(NODES[i].getID(), nodes.get(i).getID());
+			assertEquals(NODES[i].getNodeType(), nodes.get(i).getNodeType());
+		}
+	}
+
+	@Test
+	public void testParse_correctNodeConnections() throws Exception {
+		final String[] OUT_INITIAL = { "_YpVCBNEaEeKmOatZJT2A1A" };
+		final String[] IN_FINAL = { "_YpVCDNEaEeKmOatZJT2A1A" };
+		final String[] OUT_MERGE = { "_YpVCCNEaEeKmOatZJT2A1A" };
+		final String[] IN_MERGE = { "_YpVCBtEaEeKmOatZJT2A1A",
+				"_YpVCD9EaEeKmOatZJT2A1A" };
+		final String[] OUT_DECISION = { "_YpVCCdEaEeKmOatZJT2A1A",
+				"_YpVCDNEaEeKmOatZJT2A1A" };
+		final String[] IN_DECISION = { "_YpVCCNEaEeKmOatZJT2A1A" };
+		final String[] OUT_OPAQUE = { "_YpVCD9EaEeKmOatZJT2A1A" };
+		final String[] IN_OPAQUE = { "_YpVCCdEaEeKmOatZJT2A1A" };
+
+		patternsRdr.parse();
+		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
+		List<UmlNode> nodes = diags.get(3).getNodes();
+
+		UmlNode n = nodes.get(0);
+		assertEquals(NodeType.INITIAL_NODE, n.getNodeType());
+		assertArrayEquals(OUT_INITIAL, n.getOutgoing().toArray());
+		assertTrue(n.getIncoming().isEmpty());
+
+		n = nodes.get(1);
+		assertEquals(NodeType.ACTIVITY_FINAL_NODE, n.getNodeType());
+		assertTrue(n.getOutgoing().isEmpty());
+		assertArrayEquals(IN_FINAL, n.getIncoming().toArray());
+
+		n = nodes.get(3);
+		assertEquals(NodeType.MERGE_NODE, n.getNodeType());
+		assertArrayEquals(OUT_MERGE, n.getOutgoing().toArray());
+		assertArrayEquals(IN_MERGE, n.getIncoming().toArray());
+
+		n = nodes.get(4);
+		assertEquals(NodeType.DECISION_NODE, n.getNodeType());
+		assertArrayEquals(OUT_DECISION, n.getOutgoing().toArray());
+		assertArrayEquals(IN_DECISION, n.getIncoming().toArray());
+
+		n = nodes.get(5);
+		assertEquals(NodeType.OPAQUE_ACTION, n.getNodeType());
+		assertArrayEquals(OUT_OPAQUE, n.getOutgoing().toArray());
+		assertArrayEquals(IN_OPAQUE, n.getIncoming().toArray());
+	}
 }

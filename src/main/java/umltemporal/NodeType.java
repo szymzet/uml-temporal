@@ -22,7 +22,7 @@ public enum NodeType {
 	 * @param xmiType
 	 * @return
 	 */
-	public NodeType fromString(String xmiType) {
+	public static NodeType fromString(String xmiType) {
 		if (xmiType == null) {
 			throw new IllegalArgumentException(
 					"Trying to create a node type from null string");

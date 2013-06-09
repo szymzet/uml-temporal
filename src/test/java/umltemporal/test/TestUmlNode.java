@@ -1,7 +1,7 @@
 package umltemporal.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class TestUmlNode {
 		UmlNode n = new UmlNode("id", NodeType.DECISION_NODE);
 		assertEquals("id", n.getID().toString());
 		assertEquals(NodeType.DECISION_NODE, n.getNodeType());
-		assertNull(n.getIncoming());
-		assertNull(n.getOutgoing());
+		assertTrue(n.getIncoming().isEmpty());
+		assertTrue(n.getOutgoing().isEmpty());
 	}
 }
