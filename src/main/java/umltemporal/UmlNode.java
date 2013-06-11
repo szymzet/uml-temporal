@@ -11,6 +11,7 @@ public class UmlNode extends UmlElement {
 	private NodeType nodeType;
 	private List<String> incoming;
 	private List<String> outgoing;
+	private String name;
 
 	public List<String> getIncoming() {
 		return incoming;
@@ -37,5 +38,13 @@ public class UmlNode extends UmlElement {
 		this.nodeType = nodeType;
 		this.incoming = new ArrayList<String>();
 		this.outgoing = new ArrayList<String>();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

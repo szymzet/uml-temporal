@@ -108,6 +108,11 @@ public final class XmiFileReader {
 					"\\s+")));
 		}
 
+		Node nameAttr = attributes.getNamedItem("name");
+		if (nameAttr != null) {
+			umlNode.setName(nameAttr.getNodeValue());
+		}
+
 		return umlNode;
 	}
 }

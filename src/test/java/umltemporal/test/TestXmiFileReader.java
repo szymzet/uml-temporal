@@ -102,6 +102,20 @@ public class TestXmiFileReader {
 	}
 
 	@Test
+	public void testParse_correctNodeNames() throws Exception {
+		final String[] names = { "Initial Node", "Decision-Merge", "a", "b",
+				"c", "Decision-Merge1", "Activity Final Node" };
+
+		patternsRdr.parse();
+		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
+		List<UmlNode> nodes = diags.get(2).getNodes();
+
+		for (int i = 0; i < nodes.size(); ++i) {
+			assertEquals(names[i], nodes.get(i).getName());
+		}
+	}
+
+	@Test
 	public void testParse_correctNodeConnections() throws Exception {
 		final String[] OUT_INITIAL = { "_YpVCBNEaEeKmOatZJT2A1A" };
 		final String[] IN_FINAL = { "_YpVCDNEaEeKmOatZJT2A1A" };
