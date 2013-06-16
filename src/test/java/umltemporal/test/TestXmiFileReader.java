@@ -63,13 +63,9 @@ public class TestXmiFileReader {
 
 	@Test
 	public void testParse_correctIdsInEdges() throws Exception {
-		final String[][] IDS = {
-				{ "_YpNGOtEaEeKmOatZJT2A1A", "_YpNGNtEaEeKmOatZJT2A1A",
-						"_YpNGN9EaEeKmOatZJT2A1A" },
-				{ "_YpNtQNEaEeKmOatZJT2A1A", "_YpNGN9EaEeKmOatZJT2A1A",
-						"_YpNGOdEaEeKmOatZJT2A1A" },
-				{ "_YpNtQtEaEeKmOatZJT2A1A", "_YpNGONEaEeKmOatZJT2A1A",
-						"_YpNGNtEaEeKmOatZJT2A1A" } };
+		final String[][] IDS = { { "_YpNGOtEaEeKmOatZJT2A1A", "_YpNGNtEaEeKmOatZJT2A1A", "_YpNGN9EaEeKmOatZJT2A1A" },
+								{ "_YpNtQNEaEeKmOatZJT2A1A", "_YpNGN9EaEeKmOatZJT2A1A", "_YpNGOdEaEeKmOatZJT2A1A" },
+								{ "_YpNtQtEaEeKmOatZJT2A1A", "_YpNGONEaEeKmOatZJT2A1A", "_YpNGNtEaEeKmOatZJT2A1A" } };
 
 		patternsRdr.parse();
 		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
@@ -83,14 +79,12 @@ public class TestXmiFileReader {
 
 	@Test
 	public void testParse_correctIdsInNodes() throws Exception {
-		final UmlNode[] NODES = {
-				new UmlNode("_YpOUXtEaEeKmOatZJT2A1A", NodeType.INITIAL_NODE),
-				new UmlNode("_YpOUX9EaEeKmOatZJT2A1A",
-						NodeType.ACTIVITY_FINAL_NODE),
-				new UmlNode("_YpVCANEaEeKmOatZJT2A1A", NodeType.OPAQUE_ACTION),
-				new UmlNode("_YpVCAdEaEeKmOatZJT2A1A", NodeType.MERGE_NODE),
-				new UmlNode("_YpVCAtEaEeKmOatZJT2A1A", NodeType.DECISION_NODE),
-				new UmlNode("_YpVCA9EaEeKmOatZJT2A1A", NodeType.OPAQUE_ACTION) };
+		final UmlNode[] NODES = {	new UmlNode("_YpOUXtEaEeKmOatZJT2A1A", NodeType.INITIAL_NODE),
+									new UmlNode("_YpOUX9EaEeKmOatZJT2A1A", NodeType.ACTIVITY_FINAL_NODE),
+									new UmlNode("_YpVCANEaEeKmOatZJT2A1A", NodeType.OPAQUE_ACTION),
+									new UmlNode("_YpVCAdEaEeKmOatZJT2A1A", NodeType.MERGE_NODE),
+									new UmlNode("_YpVCAtEaEeKmOatZJT2A1A", NodeType.DECISION_NODE),
+									new UmlNode("_YpVCA9EaEeKmOatZJT2A1A", NodeType.OPAQUE_ACTION) };
 
 		patternsRdr.parse();
 		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
@@ -103,8 +97,13 @@ public class TestXmiFileReader {
 
 	@Test
 	public void testParse_correctNodeNames() throws Exception {
-		final String[] names = { "Initial Node", "Decision-Merge", "a", "b",
-				"c", "Decision-Merge1", "Activity Final Node" };
+		final String[] names = { "Initial Node",
+								"Decision-Merge",
+								"a",
+								"b",
+								"c",
+								"Decision-Merge1",
+								"Activity Final Node" };
 
 		patternsRdr.parse();
 		List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
@@ -120,10 +119,8 @@ public class TestXmiFileReader {
 		final String[] OUT_INITIAL = { "_YpVCBNEaEeKmOatZJT2A1A" };
 		final String[] IN_FINAL = { "_YpVCDNEaEeKmOatZJT2A1A" };
 		final String[] OUT_MERGE = { "_YpVCCNEaEeKmOatZJT2A1A" };
-		final String[] IN_MERGE = { "_YpVCBtEaEeKmOatZJT2A1A",
-				"_YpVCD9EaEeKmOatZJT2A1A" };
-		final String[] OUT_DECISION = { "_YpVCCdEaEeKmOatZJT2A1A",
-				"_YpVCDNEaEeKmOatZJT2A1A" };
+		final String[] IN_MERGE = { "_YpVCBtEaEeKmOatZJT2A1A", "_YpVCD9EaEeKmOatZJT2A1A" };
+		final String[] OUT_DECISION = { "_YpVCCdEaEeKmOatZJT2A1A", "_YpVCDNEaEeKmOatZJT2A1A" };
 		final String[] IN_DECISION = { "_YpVCCNEaEeKmOatZJT2A1A" };
 		final String[] OUT_OPAQUE = { "_YpVCD9EaEeKmOatZJT2A1A" };
 		final String[] IN_OPAQUE = { "_YpVCCdEaEeKmOatZJT2A1A" };
@@ -156,5 +153,16 @@ public class TestXmiFileReader {
 		assertEquals(NodeType.OPAQUE_ACTION, n.getNodeType());
 		assertArrayEquals(OUT_OPAQUE, n.getOutgoing().toArray());
 		assertArrayEquals(IN_OPAQUE, n.getIncoming().toArray());
+	}
+
+	@Test
+	public void testParse_parsingEdgeGuards() throws Exception {
+		patternsRdr.parse();
+		UmlActivityDiagram diag = patternsRdr.getActivityDiagrams().get(2);
+		List<UmlEdge> edges = diag.getEdges();
+		assertEquals(null, edges.get(0).getGuard());
+		assertEquals("warunek", edges.get(1).getGuard());
+		assertEquals("NOT warunek", edges.get(2).getGuard());
+
 	}
 }

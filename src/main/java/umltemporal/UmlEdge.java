@@ -7,6 +7,15 @@ public class UmlEdge extends UmlElement {
 
 	private String sourceID;
 	private String targetID;
+	private String guard;
+
+	public String getGuard() {
+		return guard;
+	}
+
+	public void setGuard(String guard) {
+		this.guard = guard;
+	}
 
 	/**
 	 * Get ID of the element being the source of the edge.

@@ -37,8 +37,7 @@ public final class XmiFileReader {
 		for (int i = 0; i < diagElems.getLength(); ++i) {
 			Node elem = diagElems.item(i);
 			Node typeAttr = elem.getAttributes().getNamedItem("xmi:type");
-			if (typeAttr != null
-					&& typeAttr.getNodeValue().equals("uml:Activity")) {
+			if (typeAttr != null && typeAttr.getNodeValue().equals("uml:Activity")) {
 				UmlActivityDiagram activityDiag = parseDiagram(elem);
 				activityDiagrams.add(activityDiag);
 			}
@@ -85,27 +84,49 @@ public final class XmiFileReader {
 		String sourceID = attributes.getNamedItem("source").getNodeValue();
 		String targetID = attributes.getNamedItem("target").getNodeValue();
 
-		return new UmlEdge(id, sourceID, targetID);
+		NodeList childNodes = node.getChildNodes();
+		String guard = null;
+		for (int i = 0; i < childNodes.getLength(); ++i) {
+			if ("guard".equals(childNodes.item(i).getNodeName())) {
+				guard = getEdgeGuardValue(childNodes.item(i));
+				break;
+			}
+		}
+
+		UmlEdge edge = new UmlEdge(id, sourceID, targetID);
+		if (guard != null) {
+			edge.setGuard(guard);
+		}
+
+		return edge;
+	}
+
+	private String getEdgeGuardValue(Node guardNode) {
+		NodeList childNodes = guardNode.getChildNodes();
+		for (int i = 0; i < childNodes.getLength(); ++i) {
+			if ("body".equals(childNodes.item(i).getNodeName())) {
+				return childNodes.item(i).getFirstChild().getNodeValue();
+			}
+		}
+
+		return null;
 	}
 
 	private UmlNode buildUmlNode(Node node) {
 		NamedNodeMap attributes = node.getAttributes();
 		String id = attributes.getNamedItem("xmi:id").getNodeValue();
-		NodeType nodeType = NodeType.fromString(attributes.getNamedItem(
-				"xmi:type").getNodeValue());
+		NodeType nodeType = NodeType.fromString(attributes.getNamedItem("xmi:type").getNodeValue());
 
 		UmlNode umlNode = new UmlNode(id, nodeType);
 
 		Node outAttr = attributes.getNamedItem("outgoing");
 		if (outAttr != null) {
-			umlNode.setOutgoing(Arrays.asList(outAttr.getNodeValue().split(
-					"\\s+")));
+			umlNode.setOutgoing(Arrays.asList(outAttr.getNodeValue().split("\\s+")));
 		}
 
 		Node inAttr = attributes.getNamedItem("incoming");
 		if (inAttr != null) {
-			umlNode.setIncoming(Arrays.asList(inAttr.getNodeValue().split(
-					"\\s+")));
+			umlNode.setIncoming(Arrays.asList(inAttr.getNodeValue().split("\\s+")));
 		}
 
 		Node nameAttr = attributes.getNamedItem("name");

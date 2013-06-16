@@ -40,6 +40,13 @@ public class UmlNode extends UmlElement {
 		this.outgoing = new ArrayList<String>();
 	}
 
+	public UmlNode(String id, NodeType nodeType, List<String> incoming, List<String> outgoing) {
+		super(id);
+		this.nodeType = nodeType;
+		this.incoming = incoming;
+		this.outgoing = outgoing;
+	}
+
 	public String getName() {
 		return name;
 	}

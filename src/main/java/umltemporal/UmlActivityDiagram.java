@@ -19,5 +19,4 @@ public final class UmlActivityDiagram {
 	public List<UmlNode> getNodes() {
 		return nodes;
 	}
-
 }
