@@ -10,7 +10,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import umltemporal.ActivityDiagramGraph;
+import umltemporal.Expression;
 import umltemporal.NodeType;
+import umltemporal.TemporalGenerator;
 import umltemporal.UmlActivityDiagram;
 import umltemporal.UmlEdge;
 import umltemporal.UmlNode;
@@ -164,5 +167,17 @@ public class TestXmiFileReader {
 		assertEquals("warunek", edges.get(1).getGuard());
 		assertEquals("NOT warunek", edges.get(2).getGuard());
 
+	}
+
+	@Test
+	public void testExpression() throws Exception {
+		patternsRdr.parse();
+		List<UmlActivityDiagram> diagrams = patternsRdr.getActivityDiagrams();
+		for (UmlActivityDiagram diagram : diagrams) {
+			ActivityDiagramGraph graph = new ActivityDiagramGraph(diagram);
+			TemporalGenerator generator = new TemporalGenerator(graph);
+			Expression expression = generator.buildExpression();
+			System.out.println(expression.toString());
+		}
 	}
 }
