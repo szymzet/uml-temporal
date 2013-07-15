@@ -171,8 +171,8 @@ public class TestXmiFileReader {
 
 	@Test
 	public void testExpression() throws Exception {
-		patternsRdr.parse();
-		List<UmlActivityDiagram> diagrams = patternsRdr.getActivityDiagrams();
+		longSeqRdr.parse();
+		List<UmlActivityDiagram> diagrams = longSeqRdr.getActivityDiagrams();
 		for (UmlActivityDiagram diagram : diagrams) {
 			ActivityDiagramGraph graph = new ActivityDiagramGraph(diagram);
 			TemporalGenerator generator = new TemporalGenerator(graph);
