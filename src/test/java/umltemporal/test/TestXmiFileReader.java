@@ -10,14 +10,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import umltemporal.ActivityDiagramGraph;
-import umltemporal.Expression;
-import umltemporal.NodeType;
-import umltemporal.TemporalGenerator;
-import umltemporal.UmlActivityDiagram;
-import umltemporal.UmlEdge;
-import umltemporal.UmlNode;
-import umltemporal.XmiFileReader;
+import umltemporal.core.ActivityDiagramGraph;
+import umltemporal.core.Expression;
+import umltemporal.core.NodeType;
+import umltemporal.core.TemporalGenerator;
+import umltemporal.core.UmlActivityDiagram;
+import umltemporal.core.UmlEdge;
+import umltemporal.core.UmlNode;
+import umltemporal.core.XmiFileReader;
 
 public class TestXmiFileReader {
 

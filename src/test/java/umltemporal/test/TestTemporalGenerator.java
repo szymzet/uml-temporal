@@ -4,15 +4,16 @@
  */
 package umltemporal.test;
 
+import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import umltemporal.ActivityDiagramGraph;
-import umltemporal.Expression;
-import umltemporal.TemporalGenerator;
-import umltemporal.UmlActivityDiagram;
-import umltemporal.XmiFileReader;
+import umltemporal.core.ActivityDiagramGraph;
+import umltemporal.core.Expression;
+import umltemporal.core.TemporalGenerator;
+import umltemporal.core.UmlActivityDiagram;
+import umltemporal.core.XmiFileReader;
 
 /**
  *
@@ -20,26 +21,69 @@ import umltemporal.XmiFileReader;
  */
 public class TestTemporalGenerator {
 
-    XmiFileReader patternsRdr;
-    XmiFileReader longSeqRdr;
+    private XmiFileReader patternsRdr;
+    private XmiFileReader longSeqRdr;
+    private XmiFileReader airportCheckinRdr;
+    private XmiFileReader nestedLoopsRdr;
 
     private File getFile(String resourcePath) {
         return new File(this.getClass().getResource(resourcePath).getFile());
+    }
+
+    private void compareGeneratorOutput(String expected, String actual) {
+        final String strippedExpected = expected.replaceAll("\\s", ""),
+                strippedActual = actual.replaceAll("\\s", "");
+        assertEquals(strippedExpected, strippedActual);
+    }
+
+    private String getExpressionString(XmiFileReader rdr) throws Exception {
+        rdr.parse();
+        UmlActivityDiagram diagram = rdr.getActivityDiagrams().get(0);
+        ActivityDiagramGraph graph = new ActivityDiagramGraph(diagram);
+        TemporalGenerator generator = new TemporalGenerator(graph);
+        return generator.buildExpression().toString();
     }
 
     @Before
     public void setUp() {
         patternsRdr = new XmiFileReader(getFile("/Patterns.xmi"));
         longSeqRdr = new XmiFileReader(getFile("/LongSequence.xmi"));
+        airportCheckinRdr = new XmiFileReader(getFile("/AirportCheckin.xmi"));
+        nestedLoopsRdr = new XmiFileReader(getFile("/NestedLoops.xmi"));
     }
 
     @Test
-    public void testExpression_longSeq() throws Exception {
-        longSeqRdr.parse();
-        UmlActivityDiagram diagram = longSeqRdr.getActivityDiagrams().get(0);
-        ActivityDiagramGraph graph = new ActivityDiagramGraph(diagram);
-        TemporalGenerator generator = new TemporalGenerator(graph);
-        Expression expression = generator.buildExpression();
-        System.out.println(expression.toString());
+    public void testExpression_airportCheckin() throws Exception {
+        final String expected =
+                "Seq(\n"
+                + "  'Show ticket'\n"
+                + "  Branch(\n"
+                + "    'Verify ticket'\n"
+                + "    Seq(\n"
+                + "      'Check luggage'\n"
+                + "      Seq(\n"
+                + "        Branch(\n"
+                + "          'Accept luggage'\n"
+                + "          'Pay fee'\n"
+                + "          'Do not pay'\n"
+                + "        )\n"
+                + "        'Issue boarding pass'\n"
+                + "      )\n"
+                + "    )\n"
+                + "    'Refer to customer service'\n"
+                + "  )\n"
+                + ")\n";
+
+        compareGeneratorOutput(expected, getExpressionString(airportCheckinRdr));
+    }
+
+    @Test
+    public void testExpression_nestedLoops() throws Exception {
+        final String expected = "Loop('Action' 'condition1'"
+                + "Loop('Action1' 'condition2' "
+                + "Loop('Action2' 'condition3' 'Action3')))";
+
+        System.out.println(getExpressionString(nestedLoopsRdr));
+        compareGeneratorOutput(expected, getExpressionString(nestedLoopsRdr));
     }
 }

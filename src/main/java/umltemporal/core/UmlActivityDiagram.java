@@ -1,4 +1,4 @@
-package umltemporal;
+package umltemporal.core;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package umltemporal;
+package umltemporal.core;
 
 /**
  * Direct representation of &lt;edge&gt; tag in imported file

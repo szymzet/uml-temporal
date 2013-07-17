@@ -1,4 +1,4 @@
-package umltemporal;
+package umltemporal.core;
 
 public abstract class UmlElement {
 

@@ -1,4 +1,4 @@
-package umltemporal;
+package umltemporal.core;
 
 import java.io.File;
 import java.io.IOException;

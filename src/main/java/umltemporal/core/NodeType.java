@@ -1,4 +1,4 @@
-package umltemporal;
+package umltemporal.core;
 
 /**
  * Enum representing _supported_ node types in UML activity diagrams which are

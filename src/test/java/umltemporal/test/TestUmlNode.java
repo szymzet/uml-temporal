@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import umltemporal.NodeType;
-import umltemporal.UmlNode;
+import umltemporal.core.NodeType;
+import umltemporal.core.UmlNode;
 
 public class TestUmlNode {
 

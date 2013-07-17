@@ -11,11 +11,11 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import umltemporal.ActivityDiagramGraph;
-import umltemporal.NodeType;
-import umltemporal.UmlActivityDiagram;
-import umltemporal.UmlEdge;
-import umltemporal.UmlNode;
+import umltemporal.core.ActivityDiagramGraph;
+import umltemporal.core.NodeType;
+import umltemporal.core.UmlActivityDiagram;
+import umltemporal.core.UmlEdge;
+import umltemporal.core.UmlNode;
 
 public class TestActivityDiagramGraph {
 
