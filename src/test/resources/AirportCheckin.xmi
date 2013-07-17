@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><uml:Model xmlns:uml="http://www.omg.org/spec/UML/20090901" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:version="2.1" xmi:id="_RN5PYO5fEeKv99-n2YaDkg" name="AirportCheckin">
+  <eAnnotations xmi:id="_RN5PYe5fEeKv99-n2YaDkg" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_RN5PYu5fEeKv99-n2YaDkg" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RN5PY-5fEeKv99-n2YaDkg" value="2.2"/>
+    </contents>
+    <contents xmi:type="uml:Property" xmi:id="_RN5PZO5fEeKv99-n2YaDkg" name="isRoundTrip"/>
+    <contents xmi:type="uml:Property" xmi:id="_RN5PZe5fEeKv99-n2YaDkg" name="Visibility">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_RN5PZu5fEeKv99-n2YaDkg" value="0"/>
+    </contents>
+  </eAnnotations>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_RN5PZ-5fEeKv99-n2YaDkg">
+    <eAnnotations xmi:id="_RN5PaO5fEeKv99-n2YaDkg" source="Objing">
+      <contents xmi:type="uml:Property" xmi:id="_RN5Pae5fEeKv99-n2YaDkg" name="NoteType_Name">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_RN5Pau5fEeKv99-n2YaDkg" value="description"/>
+      </contents>
+    </eAnnotations>
+    <body/>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_RN5Pa-5fEeKv99-n2YaDkg" name="Activity">
+    <nestedClassifier xmi:type="uml:Collaboration" xmi:id="_RN5PbO5fEeKv99-n2YaDkg" name="locals">
+      <eAnnotations xmi:id="_RN5Pbe5fEeKv99-n2YaDkg" source="Objing">
+        <contents xmi:type="uml:Property" xmi:id="_RN5Pbu5fEeKv99-n2YaDkg" name="Visibility">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_RN5Pb-5fEeKv99-n2YaDkg" value="0"/>
+        </contents>
+      </eAnnotations>
+    </nestedClassifier>
+    <node xmi:type="uml:InitialNode" xmi:id="_RN5PcO5fEeKv99-n2YaDkg" name="Initial Node" outgoing="_RN5Pfu5fEeKv99-n2YaDkg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_RN5Pce5fEeKv99-n2YaDkg" name="Activity Final Node" incoming="_RN5PlO5fEeKv99-n2YaDkg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5Pcu5fEeKv99-n2YaDkg" name="Show ticket" outgoing="_RN5PgO5fEeKv99-n2YaDkg" incoming="_RN5Pfu5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5Pc-5fEeKv99-n2YaDkg" name="Verify ticket" outgoing="_RN5Pgu5fEeKv99-n2YaDkg" incoming="_RN5PgO5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5PdO5fEeKv99-n2YaDkg" name="Check luggage" outgoing="_RN5PhO5fEeKv99-n2YaDkg" incoming="_RN5PjO5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5Pde5fEeKv99-n2YaDkg" name="Accept luggage" outgoing="_RN5Phu5fEeKv99-n2YaDkg" incoming="_RN5PhO5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5Pdu5fEeKv99-n2YaDkg" name="Pay fee" outgoing="_RN5PiO5fEeKv99-n2YaDkg" incoming="_RN5Plu5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5Pd-5fEeKv99-n2YaDkg" name="Issue boarding pass" outgoing="_RN5Piu5fEeKv99-n2YaDkg" incoming="_RN5Pnu5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:DecisionNode" xmi:id="_RN5PeO5fEeKv99-n2YaDkg" name="Decision-Merge" outgoing="_RN5PjO5fEeKv99-n2YaDkg _RN5Pj-5fEeKv99-n2YaDkg" incoming="_RN5Pgu5fEeKv99-n2YaDkg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5Pee5fEeKv99-n2YaDkg" name="Refer to customer service" outgoing="_RN5Pku5fEeKv99-n2YaDkg" incoming="_RN5Pj-5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:MergeNode" xmi:id="_RN5Peu5fEeKv99-n2YaDkg" name="Decision-Merge1" outgoing="_RN5PlO5fEeKv99-n2YaDkg" incoming="_RN5Piu5fEeKv99-n2YaDkg _RN5Pku5fEeKv99-n2YaDkg"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_RN5Pe-5fEeKv99-n2YaDkg" name="Decision-Merge2" outgoing="_RN5Plu5fEeKv99-n2YaDkg _RN5Pme5fEeKv99-n2YaDkg" incoming="_RN5Phu5fEeKv99-n2YaDkg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RN5PfO5fEeKv99-n2YaDkg" name="Do not pay" outgoing="_RN5PnO5fEeKv99-n2YaDkg" incoming="_RN5Pme5fEeKv99-n2YaDkg">
+      <body/>
+    </node>
+    <node xmi:type="uml:MergeNode" xmi:id="_RN5Pfe5fEeKv99-n2YaDkg" name="Decision-Merge3" outgoing="_RN5Pnu5fEeKv99-n2YaDkg" incoming="_RN5PiO5fEeKv99-n2YaDkg _RN5PnO5fEeKv99-n2YaDkg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Pfu5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5PcO5fEeKv99-n2YaDkg" target="_RN5Pcu5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pf-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5PgO5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pcu5fEeKv99-n2YaDkg" target="_RN5Pc-5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pge5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Pgu5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pc-5fEeKv99-n2YaDkg" target="_RN5PeO5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pg-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5PhO5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5PdO5fEeKv99-n2YaDkg" target="_RN5Pde5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Phe5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Phu5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pde5fEeKv99-n2YaDkg" target="_RN5Pe-5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Ph-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5PiO5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pdu5fEeKv99-n2YaDkg" target="_RN5Pfe5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pie5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Piu5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pd-5fEeKv99-n2YaDkg" target="_RN5Peu5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pi-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5PjO5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5PeO5fEeKv99-n2YaDkg" target="_RN5PdO5fEeKv99-n2YaDkg">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_RN5Pje5fEeKv99-n2YaDkg">
+        <body>Ticket is OK</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pju5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Pj-5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5PeO5fEeKv99-n2YaDkg" target="_RN5Pee5fEeKv99-n2YaDkg">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_RN5PkO5fEeKv99-n2YaDkg">
+        <body>NOT Ticket is OK</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pke5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Pku5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pee5fEeKv99-n2YaDkg" target="_RN5Peu5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pk-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5PlO5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Peu5fEeKv99-n2YaDkg" target="_RN5Pce5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Ple5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Plu5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pe-5fEeKv99-n2YaDkg" target="_RN5Pdu5fEeKv99-n2YaDkg">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_RN5Pl-5fEeKv99-n2YaDkg">
+        <body>Has to pay</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5PmO5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Pme5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pe-5fEeKv99-n2YaDkg" target="_RN5PfO5fEeKv99-n2YaDkg">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_RN5Pmu5fEeKv99-n2YaDkg">
+        <body>NOT Has to pay</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pm-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5PnO5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5PfO5fEeKv99-n2YaDkg" target="_RN5Pfe5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pne5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RN5Pnu5fEeKv99-n2YaDkg" name="ControlFlow" source="_RN5Pfe5fEeKv99-n2YaDkg" target="_RN5Pd-5fEeKv99-n2YaDkg">
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RN5Pn-5fEeKv99-n2YaDkg" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>
