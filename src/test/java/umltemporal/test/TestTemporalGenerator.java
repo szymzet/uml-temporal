@@ -77,7 +77,7 @@ public class TestTemporalGenerator {
 			+ "  Concur('n' 'k' Loop('o' 'cond4' 'l'))"
 			+ " )"
 			+ ")";
-		System.out.println(getExpressionString(bigAllPatterns));
+		
 		compareGeneratorOutput(expected, getExpressionString(bigAllPatterns));
 	}
 
@@ -112,7 +112,6 @@ public class TestTemporalGenerator {
 			+ "Loop('Action1' 'condition2' "
 			+ "Loop('Action2' 'condition3' 'Action3')))";
 
-		System.out.println(getExpressionString(nestedLoopsRdr));
 		compareGeneratorOutput(expected, getExpressionString(nestedLoopsRdr));
 	}
 }
