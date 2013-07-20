@@ -1,21 +1,27 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package umltemporal.core;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author szymzet
  */
-class ActionExpression extends Expression {
+public class ActionExpression extends Expression {
 
 		public ActionExpression(String name) {
 				super(name);
 		}
 
 		@Override
-		public String getStringExpression() {
-				return null;
+		protected List<String> getExpressionLinesAndArgs(List<String> args) {
+				String n = name.matches(".*\\s.*") ? "'" + name + "'" : name;
+				args.add(n);
+				return new ArrayList<String>();
+		}
+
+		@Override
+		protected List<String> getPatternExpressions(List<String> currentArgs) {
+				return new ArrayList<String>();
 		}
 }

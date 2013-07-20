@@ -22,7 +22,17 @@ public abstract class Expression {
 				return toString(0);
 		}
 
-		public abstract String getStringExpression();
+		public String getStringExpression() {
+				List<String> args = new ArrayList<String>();
+				List<String> lines = getExpressionLinesAndArgs(args);
+
+				StringBuilder sb = new StringBuilder();
+				for (String line : lines) {
+						sb.append(line);
+						sb.append("\n");
+				}
+				return sb.toString();
+		}
 
 		public String toString(int depth) {
 				StringBuilder sb = new StringBuilder();
@@ -40,6 +50,44 @@ public abstract class Expression {
 						depthAppend(sb, depth, ")");
 				}
 
+				return sb.toString();
+		}
+
+		protected List<String> getExpressionLinesAndArgs(List<String> outArgs) {
+				List<String> subArgs = new ArrayList<String>();
+				List<String> currentArgs = new ArrayList<String>();
+				List<String> expressions = new ArrayList<String>();
+
+				for (Expression arg : args) {
+						List<String> exp = arg.getExpressionLinesAndArgs(subArgs);
+						expressions.addAll(exp);
+						currentArgs.add(Expression.getArgsDisjunction(subArgs));
+						outArgs.addAll(subArgs);
+						subArgs.clear();
+				}
+
+				List<String> expression = getPatternExpressions(currentArgs);
+				expressions.addAll(expression);
+				return expressions;
+
+		}
+
+		protected abstract List<String> getPatternExpressions(List<String> currentArgs);
+
+		protected static String getArgsDisjunction(List<String> args) {
+				assert args.size() > 0;
+				if (args.size() == 1) {
+						return args.get(0);
+				}
+
+				StringBuilder sb = new StringBuilder("(");
+				sb.append(args.get(0));
+				for (int i = 1; i < args.size(); ++i) {
+						sb.append(" | ");
+						sb.append(args.get(i));
+				}
+
+				sb.append(")");
 				return sb.toString();
 		}
 
