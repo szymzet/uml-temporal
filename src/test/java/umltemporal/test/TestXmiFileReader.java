@@ -101,13 +101,13 @@ public class TestXmiFileReader {
 
     @Test
     public void testParse_correctNodeNames() throws Exception {
-        final String[] names = {"Initial Node",
+        final String[] names = {"'Initial Node'",
             "Decision-Merge",
             "a",
             "b",
             "c",
             "Decision-Merge1",
-            "Activity Final Node"};
+            "'Activity Final Node'"};
 
         patternsRdr.parse();
         List<UmlActivityDiagram> diags = patternsRdr.getActivityDiagrams();
@@ -166,7 +166,7 @@ public class TestXmiFileReader {
         List<UmlEdge> edges = diag.getEdges();
         assertEquals(null, edges.get(0).getGuard());
         assertEquals("warunek", edges.get(1).getGuard());
-        assertEquals("NOT warunek", edges.get(2).getGuard());
+        assertEquals("'NOT warunek'", edges.get(2).getGuard());
 
     }
 }

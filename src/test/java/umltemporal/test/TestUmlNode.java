@@ -23,4 +23,24 @@ public class TestUmlNode {
         assertTrue(n.getIncoming().isEmpty());
         assertTrue(n.getOutgoing().isEmpty());
     }
+
+    @Test
+    public void testGetName_noSpaces() {
+        UmlNode n = new UmlNode("xd", NodeType.OPAQUE_ACTION);
+        n.setName("asdfg");
+        assertEquals("asdfg", n.getName());
+    }
+
+    @Test
+    public void testGetName_quoteWithSpaces() {
+        UmlNode n = new UmlNode("xd", NodeType.OPAQUE_ACTION);
+        n.setName("as dfg");
+        assertEquals("'as dfg'", n.getName());
+    }
+
+    @Test
+    public void testGetName_notSet() {
+        UmlNode n = new UmlNode("xd", NodeType.OPAQUE_ACTION);
+        assertEquals(null, n.getName());
+    }
 }

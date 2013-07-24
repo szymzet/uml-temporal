@@ -10,6 +10,9 @@ public class UmlEdge extends UmlElement {
     private String guard;
 
     public String getGuard() {
+        if (guard != null && guard.matches(".*\\s.*")) {
+            return "'" + guard + "'";
+        }
         return guard;
     }
 

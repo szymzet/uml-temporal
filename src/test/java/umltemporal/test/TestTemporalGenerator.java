@@ -54,21 +54,21 @@ public class TestTemporalGenerator {
             "Seq("
             + " Concur("
             + "  Loop("
-            + "   'a'"
-            + "   'cond1'"
-            + "   Branch('b' Seq('c' 'd') Seq('e' 'f'))"
+            + "   a"
+            + "   cond1"
+            + "   Branch(b Seq(c d) Seq(e f))"
             + "  )"
-            + "  'j'"
+            + "  j"
             + "  Concur("
-            + "   'm'"
-            + "   'g'"
-            + "   Seq('h' 'i')   "
+            + "   m"
+            + "   g"
+            + "   Seq(h i)"
             + "  )"
             + " )"
             + " Branch("
-            + "  'p'"
-            + "  'r'"
-            + "  Concur('n' 'k' Loop('o' 'cond4' 'l'))"
+            + "  p"
+            + "  r"
+            + "  Concur(n k Loop(o cond4 l))"
             + " )"
             + ")";
 
@@ -102,9 +102,9 @@ public class TestTemporalGenerator {
 
     @Test
     public void testExpression_nestedLoops() throws Exception {
-        final String expected = "Loop('Action' 'condition1'"
-            + "Loop('Action1' 'condition2' "
-            + "Loop('Action2' 'condition3' 'Action3')))";
+        final String expected = "Loop(Action condition1"
+            + "Loop(Action1 condition2 "
+            + "Loop(Action2 condition3 Action3)))";
 
         compareGeneratorOutput(expected, getExpressionString(nestedLoopsRdr));
     }

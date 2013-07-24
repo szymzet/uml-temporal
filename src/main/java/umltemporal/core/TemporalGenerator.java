@@ -73,7 +73,7 @@ public class TemporalGenerator {
 
             case OPAQUE_ACTION:
                 nextNode = graph.getOutgoing(node).get(0);
-                stack.push(expFactory.get("'" + node.getName() + "'"));
+                stack.push(expFactory.get(node.getName()));
                 return build(nextNode, stack);
 
             default:
@@ -110,7 +110,7 @@ public class TemporalGenerator {
         List<UmlNode> outgoing = graph.getOutgoing(node);
         for (UmlNode next : outgoing) {
             String guard = graph.getEdge(node, next).getGuard();
-            if (guard != null && guard.matches("^\\s*[nN][oO][tT]\\s+.*")) {
+            if (guard != null && guard.matches("^'?\\s*[nN][oO][tT]\\s+.*'?")) {
                 return next;
             }
         }
@@ -171,7 +171,7 @@ public class TemporalGenerator {
     private Expression getGuardExpression(UmlNode startNode, UmlNode endNode) {
         String guard = graph.getEdge(startNode, endNode).getGuard();
         assert guard != null;
-        return expFactory.get("'" + guard + "'");
+        return expFactory.get(guard);
     }
 
     /**

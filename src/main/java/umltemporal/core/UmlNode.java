@@ -48,6 +48,9 @@ public class UmlNode extends UmlElement {
     }
 
     public String getName() {
+        if (name != null && name.matches(".*\\s.*")) {
+            return "'" + name + "'";
+        }
         return name;
     }
 

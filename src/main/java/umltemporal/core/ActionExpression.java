@@ -15,8 +15,7 @@ public class ActionExpression extends Expression {
 
     @Override
     protected List<String> getExpressionLinesAndArgs(List<String> args) {
-        String n = name.matches(".*\\s.*") ? "'" + name + "'" : name;
-        args.add(n);
+        args.add(name);
         return new ArrayList<String>();
     }
 
