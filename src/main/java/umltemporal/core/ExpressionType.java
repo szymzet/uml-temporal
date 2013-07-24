@@ -10,5 +10,5 @@ package umltemporal.core;
  */
 public enum ExpressionType {
 
-		CONCURRENCY, BRANCHING, LOOP, SEQUENCE, ACTION
+    CONCURRENCY, BRANCHING, LOOP, SEQUENCE, ACTION
 }

@@ -7,49 +7,49 @@ import java.util.Map;
 
 public class ActivityDiagramGraph {
 
-	private UmlNode initialNode;
-	private Map<String, UmlElement> elements;
+    private UmlNode initialNode;
+    private Map<String, UmlElement> elements;
 
-	public UmlNode getInitialNode() {
-		return initialNode;
-	}
+    public UmlNode getInitialNode() {
+        return initialNode;
+    }
 
-	public ActivityDiagramGraph(UmlActivityDiagram umlDiagram) {
-		elements = new HashMap<String, UmlElement>();
+    public ActivityDiagramGraph(UmlActivityDiagram umlDiagram) {
+        elements = new HashMap<String, UmlElement>();
 
-		for (UmlNode node : umlDiagram.getNodes()) {
-			elements.put(node.getID(), node);
+        for (UmlNode node : umlDiagram.getNodes()) {
+            elements.put(node.getID(), node);
 
-			if (node.getNodeType() == NodeType.INITIAL_NODE) {
-				initialNode = node;
-			}
-		}
+            if (node.getNodeType() == NodeType.INITIAL_NODE) {
+                initialNode = node;
+            }
+        }
 
-		for (UmlEdge edge : umlDiagram.getEdges()) {
-			elements.put(edge.getID(), edge);
-		}
-	}
+        for (UmlEdge edge : umlDiagram.getEdges()) {
+            elements.put(edge.getID(), edge);
+        }
+    }
 
-	public List<UmlNode> getOutgoing(UmlNode node) {
-		List<UmlNode> result = new ArrayList<UmlNode>();
-		List<String> ids = node.getOutgoing();
-		for (String edgeID : ids) {
-			UmlEdge e = (UmlEdge) elements.get(edgeID);
-			result.add((UmlNode) elements.get(e.getTargetID()));
-		}
+    public List<UmlNode> getOutgoing(UmlNode node) {
+        List<UmlNode> result = new ArrayList<UmlNode>();
+        List<String> ids = node.getOutgoing();
+        for (String edgeID : ids) {
+            UmlEdge e = (UmlEdge) elements.get(edgeID);
+            result.add((UmlNode) elements.get(e.getTargetID()));
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	public UmlEdge getEdge(UmlNode startNode, UmlNode endNode) {
-		for (String outID : startNode.getOutgoing()) {
-			for (String inID : endNode.getIncoming()) {
-				if (outID.equals(inID) && outID != null) {
-					return (UmlEdge) elements.get(inID);
-				}
-			}
-		}
+    public UmlEdge getEdge(UmlNode startNode, UmlNode endNode) {
+        for (String outID : startNode.getOutgoing()) {
+            for (String inID : endNode.getIncoming()) {
+                if (outID.equals(inID) && outID != null) {
+                    return (UmlEdge) elements.get(inID);
+                }
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 }

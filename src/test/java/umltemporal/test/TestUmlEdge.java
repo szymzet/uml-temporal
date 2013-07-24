@@ -9,15 +9,15 @@ import umltemporal.core.UmlEdge;
 
 public class TestUmlEdge {
 
-	@Before
-	public void setUp() throws Exception {
-	}
+    @Before
+    public void setUp() throws Exception {
+    }
 
-	@Test
-	public void testConstruction() {
-		UmlEdge e = new UmlEdge("id", "sourceID", "targetID");
-		assertEquals("sourceID", e.getSourceID());
-		assertEquals("targetID", e.getTargetID());
-		assertEquals("id", e.getID());
-	}
+    @Test
+    public void testConstruction() {
+        UmlEdge e = new UmlEdge("id", "sourceID", "targetID");
+        assertEquals("sourceID", e.getSourceID());
+        assertEquals("targetID", e.getTargetID());
+        assertEquals("id", e.getID());
+    }
 }

@@ -15,125 +15,125 @@ import org.w3c.dom.NodeList;
 
 public final class XmiFileReader {
 
-	private List<UmlActivityDiagram> activityDiagrams;
-	private DocumentBuilderFactory docFactory;
-	private File file;
+    private List<UmlActivityDiagram> activityDiagrams;
+    private DocumentBuilderFactory docFactory;
+    private File file;
 
-	public XmiFileReader(File xmiFile) {
-		file = xmiFile;
-		docFactory = DocumentBuilderFactory.newInstance();
-		docFactory.setIgnoringComments(true);
-		docFactory.setIgnoringElementContentWhitespace(false);
-		docFactory.setValidating(false);
-	}
+    public XmiFileReader(File xmiFile) {
+        file = xmiFile;
+        docFactory = DocumentBuilderFactory.newInstance();
+        docFactory.setIgnoringComments(true);
+        docFactory.setIgnoringElementContentWhitespace(false);
+        docFactory.setValidating(false);
+    }
 
-	public void parse() throws Exception {
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-		Document doc = docBuilder.parse(file);
-		NodeList diagElems = doc.getElementsByTagName("packagedElement");
+    public void parse() throws Exception {
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+        Document doc = docBuilder.parse(file);
+        NodeList diagElems = doc.getElementsByTagName("packagedElement");
 
-		activityDiagrams = new ArrayList<UmlActivityDiagram>();
+        activityDiagrams = new ArrayList<UmlActivityDiagram>();
 
-		for (int i = 0; i < diagElems.getLength(); ++i) {
-			Node elem = diagElems.item(i);
-			Node typeAttr = elem.getAttributes().getNamedItem("xmi:type");
-			if (typeAttr != null && typeAttr.getNodeValue().equals("uml:Activity")) {
-				UmlActivityDiagram activityDiag = parseDiagram(elem);
-				activityDiagrams.add(activityDiag);
-			}
-		}
-	}
+        for (int i = 0; i < diagElems.getLength(); ++i) {
+            Node elem = diagElems.item(i);
+            Node typeAttr = elem.getAttributes().getNamedItem("xmi:type");
+            if (typeAttr != null && typeAttr.getNodeValue().equals("uml:Activity")) {
+                UmlActivityDiagram activityDiag = parseDiagram(elem);
+                activityDiagrams.add(activityDiag);
+            }
+        }
+    }
 
-	public List<UmlActivityDiagram> getActivityDiagrams() {
-		return activityDiagrams;
-	}
+    public List<UmlActivityDiagram> getActivityDiagrams() {
+        return activityDiagrams;
+    }
 
-	private UmlActivityDiagram parseDiagram(final Node diagramNode) {
-		List<UmlNode> nodes = new ArrayList<UmlNode>();
-		List<UmlEdge> edges = new ArrayList<UmlEdge>();
+    private UmlActivityDiagram parseDiagram(final Node diagramNode) {
+        List<UmlNode> nodes = new ArrayList<UmlNode>();
+        List<UmlEdge> edges = new ArrayList<UmlEdge>();
 
-		NodeList childNodes = diagramNode.getChildNodes();
-		for (int i = 0; i < childNodes.getLength(); ++i) {
-			Node childNode = childNodes.item(i);
-			if (isNodeElement(childNode)) {
-				nodes.add(buildUmlNode(childNode));
-			} else if (isEdgeElement(childNode)) {
-				edges.add(builUmlEdge(childNode));
-			}
-		}
+        NodeList childNodes = diagramNode.getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); ++i) {
+            Node childNode = childNodes.item(i);
+            if (isNodeElement(childNode)) {
+                nodes.add(buildUmlNode(childNode));
+            } else if (isEdgeElement(childNode)) {
+                edges.add(builUmlEdge(childNode));
+            }
+        }
 
-		return new UmlActivityDiagram(edges, nodes);
-	}
+        return new UmlActivityDiagram(edges, nodes);
+    }
 
-	private boolean isEdgeElement(Node node) {
-		if (!node.getNodeName().equals("edge")) {
-			return false;
-		}
+    private boolean isEdgeElement(Node node) {
+        if (!node.getNodeName().equals("edge")) {
+            return false;
+        }
 
-		Node attr = node.getAttributes().getNamedItem("xmi:type");
-		return attr != null && ("uml:ControlFlow").equals(attr.getNodeValue());
-	}
+        Node attr = node.getAttributes().getNamedItem("xmi:type");
+        return attr != null && ("uml:ControlFlow").equals(attr.getNodeValue());
+    }
 
-	private boolean isNodeElement(Node node) {
-		return ("node").equals(node.getNodeName());
-	}
+    private boolean isNodeElement(Node node) {
+        return ("node").equals(node.getNodeName());
+    }
 
-	private UmlEdge builUmlEdge(Node node) {
-		NamedNodeMap attributes = node.getAttributes();
-		String id = attributes.getNamedItem("xmi:id").getNodeValue();
-		String sourceID = attributes.getNamedItem("source").getNodeValue();
-		String targetID = attributes.getNamedItem("target").getNodeValue();
+    private UmlEdge builUmlEdge(Node node) {
+        NamedNodeMap attributes = node.getAttributes();
+        String id = attributes.getNamedItem("xmi:id").getNodeValue();
+        String sourceID = attributes.getNamedItem("source").getNodeValue();
+        String targetID = attributes.getNamedItem("target").getNodeValue();
 
-		NodeList childNodes = node.getChildNodes();
-		String guard = null;
-		for (int i = 0; i < childNodes.getLength(); ++i) {
-			if ("guard".equals(childNodes.item(i).getNodeName())) {
-				guard = getEdgeGuardValue(childNodes.item(i));
-				break;
-			}
-		}
+        NodeList childNodes = node.getChildNodes();
+        String guard = null;
+        for (int i = 0; i < childNodes.getLength(); ++i) {
+            if ("guard".equals(childNodes.item(i).getNodeName())) {
+                guard = getEdgeGuardValue(childNodes.item(i));
+                break;
+            }
+        }
 
-		UmlEdge edge = new UmlEdge(id, sourceID, targetID);
-		if (guard != null) {
-			edge.setGuard(guard);
-		}
+        UmlEdge edge = new UmlEdge(id, sourceID, targetID);
+        if (guard != null) {
+            edge.setGuard(guard);
+        }
 
-		return edge;
-	}
+        return edge;
+    }
 
-	private String getEdgeGuardValue(Node guardNode) {
-		NodeList childNodes = guardNode.getChildNodes();
-		for (int i = 0; i < childNodes.getLength(); ++i) {
-			if ("body".equals(childNodes.item(i).getNodeName())) {
-				return childNodes.item(i).getFirstChild().getNodeValue();
-			}
-		}
+    private String getEdgeGuardValue(Node guardNode) {
+        NodeList childNodes = guardNode.getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); ++i) {
+            if ("body".equals(childNodes.item(i).getNodeName())) {
+                return childNodes.item(i).getFirstChild().getNodeValue();
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	private UmlNode buildUmlNode(Node node) {
-		NamedNodeMap attributes = node.getAttributes();
-		String id = attributes.getNamedItem("xmi:id").getNodeValue();
-		NodeType nodeType = NodeType.fromString(attributes.getNamedItem("xmi:type").getNodeValue());
+    private UmlNode buildUmlNode(Node node) {
+        NamedNodeMap attributes = node.getAttributes();
+        String id = attributes.getNamedItem("xmi:id").getNodeValue();
+        NodeType nodeType = NodeType.fromString(attributes.getNamedItem("xmi:type").getNodeValue());
 
-		UmlNode umlNode = new UmlNode(id, nodeType);
+        UmlNode umlNode = new UmlNode(id, nodeType);
 
-		Node outAttr = attributes.getNamedItem("outgoing");
-		if (outAttr != null) {
-			umlNode.setOutgoing(Arrays.asList(outAttr.getNodeValue().split("\\s+")));
-		}
+        Node outAttr = attributes.getNamedItem("outgoing");
+        if (outAttr != null) {
+            umlNode.setOutgoing(Arrays.asList(outAttr.getNodeValue().split("\\s+")));
+        }
 
-		Node inAttr = attributes.getNamedItem("incoming");
-		if (inAttr != null) {
-			umlNode.setIncoming(Arrays.asList(inAttr.getNodeValue().split("\\s+")));
-		}
+        Node inAttr = attributes.getNamedItem("incoming");
+        if (inAttr != null) {
+            umlNode.setIncoming(Arrays.asList(inAttr.getNodeValue().split("\\s+")));
+        }
 
-		Node nameAttr = attributes.getNamedItem("name");
-		if (nameAttr != null) {
-			umlNode.setName(nameAttr.getNodeValue());
-		}
+        Node nameAttr = attributes.getNamedItem("name");
+        if (nameAttr != null) {
+            umlNode.setName(nameAttr.getNodeValue());
+        }
 
-		return umlNode;
-	}
+        return umlNode;
+    }
 }

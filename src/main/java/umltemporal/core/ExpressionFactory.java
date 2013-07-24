@@ -10,26 +10,26 @@ package umltemporal.core;
  */
 public class ExpressionFactory {
 
-		public ExpressionFactory() {
-		}
+    public ExpressionFactory() {
+    }
 
-		public Expression get(ExpressionType type) {
+    public Expression get(ExpressionType type) {
 
-				switch (type) {
-						case BRANCHING:
-								return new BranchingExpression();
-						case CONCURRENCY:
-								return new ConcurrencyExpression();
-						case LOOP:
-								return new LoopExpression();
-						case SEQUENCE:
-								return new SequenceExpression();
-						default:
-								throw new IllegalArgumentException("Not supported ExpressionType");
-				}
-		}
+        switch (type) {
+            case BRANCHING:
+                return new BranchingExpression();
+            case CONCURRENCY:
+                return new ConcurrencyExpression();
+            case LOOP:
+                return new LoopExpression();
+            case SEQUENCE:
+                return new SequenceExpression();
+            default:
+                throw new IllegalArgumentException("Not supported ExpressionType");
+        }
+    }
 
-		public Expression get(String name) {
-				return new ActionExpression(name);
-		}
+    public Expression get(String name) {
+        return new ActionExpression(name);
+    }
 }

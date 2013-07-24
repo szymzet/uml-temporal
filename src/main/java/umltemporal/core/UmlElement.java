@@ -2,13 +2,13 @@ package umltemporal.core;
 
 public abstract class UmlElement {
 
-	protected String id;
+    protected String id;
 
-	public String getID() {
-		return id;
-	}
+    public String getID() {
+        return id;
+    }
 
-	public UmlElement(String id) {
-		this.id = id;
-	}
+    public UmlElement(String id) {
+        this.id = id;
+    }
 }
