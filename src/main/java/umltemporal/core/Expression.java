@@ -23,8 +23,8 @@ public abstract class Expression {
     }
 
     public String getStringExpression() {
-        List<String> args = new ArrayList<String>();
-        List<String> lines = getExpressionLinesAndArgs(args);
+        List<String> argsFromEnclosed = new ArrayList<String>();
+        List<String> lines = getExpressionLinesAndArgs(argsFromEnclosed);
 
         StringBuilder sb = new StringBuilder();
         for (String line : lines) {
